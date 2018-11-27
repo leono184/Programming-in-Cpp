@@ -19,7 +19,7 @@ public:
 	Logarithm(const Logarithm &L);
 	~Logarithm();
 
-	Expression *clone() const;	
+	Expression *clone() const;
 	Logarithm(const Expression &E, double c1, double c2, int b);
 
 	double operator()(double x) const;

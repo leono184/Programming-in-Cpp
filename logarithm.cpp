@@ -47,20 +47,16 @@ double Logarithm::operator()(double x) const
 
 Logarithm::~Logarithm()
 {
-	c1 = NULL;
-	c2 = NULL;
-	b = NULL;
+	c1 = c2 = b = NULL;
 	delete E;
 }
 
 const Logarithm & Logarithm::operator=(const Logarithm & inL)
 {
+	using std::swap;
 	if (this != &inL) {
 		Logarithm tmp(inL);
-		std::swap(c1,tmp.c1);
-		std::swap(c2, tmp.c2);
-		std::swap(b, tmp.b);
-		std::swap(E, tmp.E);
+		swap(E, tmp.E);
 	}
 	return *this;
 }
@@ -68,7 +64,9 @@ const Logarithm & Logarithm::operator=(const Logarithm & inL)
 void Logarithm::display(std::ostream & os) const
 {
 	os << std::fixed << std::setprecision(2);
-	os << c1 << " + " << c2 << "*log_" << b << "(" << *E << ")";
+	if (abs(c1) > EPSILON)
+		os << c1 << " + ";
+	os << c2 << "*log_" << b << "(" << *E << ")";
 	
 }
 

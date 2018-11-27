@@ -87,14 +87,15 @@ double Polynomial::operator()(double x) const
 
 void Polynomial::display(std::ostream & os) const
 {
+	double tmp;
 	os << std::fixed << std::setprecision(2);
-	for (int i = 0; i <= deg; i++)
-		if (!(abs(v[i]) < EPSILON))
-			if(i==0)
-				os << v[i];
-			else 
-				os << " + " << v[i] << "*x^" << i ;
-
+	for (int i = 0; i <= deg; i++) {
+		tmp = (abs(v[i]) < EPSILON) ? 0.00 : v[i];
+		if (i == 0)
+			os << tmp;
+		else if(tmp!=0.00)
+			os << " + " << tmp << "*x^" << i;
+	}
 		
 }
 
