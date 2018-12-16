@@ -9,7 +9,6 @@
 #include <set>
 #include <vector>
 #include <string>
-#include "uppgift3.h"
 #include <iterator>
 #include <iomanip>
 
@@ -26,15 +25,20 @@ using Map_type = std::map<std::string, std::set<std::string>>;
 *********************************/
 class PrettyPrinter{
 public:
+
 	PrettyPrinter(std::ostream &os, int i, char s) : stream{ os }, indentation{ i }, separator{ s } {};
+
 	template<typename RandomIt>
 	void print(std::string name, RandomIt first, RandomIt last);
+
 	template<typename container>
 	void print(std::string name, container c);
+
 private:
 	std::ostream& stream;
 	int indentation;
 	char separator;
+
 };
 
 /*****************************************
@@ -42,6 +46,7 @@ private:
 ******************************************/
 template<typename T1, typename T2>
 std::ostream& operator << (std::ostream &out, std::pair<T1, T2> p);
+
 template<typename T>
 std::ostream& operator<<(std::ostream &out, std::set<T> s);
 /*******************************
